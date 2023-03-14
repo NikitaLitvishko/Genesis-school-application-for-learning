@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#root {
+  /* flex-контейнер для <header>, <main> и <footer> */
+  display: flex;
+  /* flex-элементы <header>, <main> и <footer> выстаиваются по вертикали */
+  flex-direction: column;
+  /* вся высота viewport браузера */
+  min-height: 100vh;
+}
+main {
+  padding-top: 20px;
+  /*
+   * может как увеличиваться, так и уменьшаться, чтобы вместе с
+   * <header> и <footer> занять всю высоту viewport браузера
+   */
+  flex: 1 1 auto;
+}
+.page-footer {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.courses-row{
+  display: flex;
+}
+.course {
+  margin-top: 1%;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+  border: solid;
+  border-color: black;
+  border-radius: 7px;
+  width: 25%;
+}
+.title {
+  font-weight: 700;
+}
+
+.image img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 280px;
+}
+.info {
+  font-size: 13px;
+}
+.rating {
+  margin-bottom: 0;
+  padding-left: 0;
+  font-size: 21px;
+  list-style-type: none;
+
+}
+.rating li{
+  display: inline-block;
+  color: #ffc107;
+}
+nav {
+  box-shadow: none;
+}
