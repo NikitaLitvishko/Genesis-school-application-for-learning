@@ -23,7 +23,7 @@ main {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.courses-row{
+.courses-row {
   display: flex;
 }
 .course {
@@ -53,9 +53,8 @@ main {
   padding-left: 0;
   font-size: 21px;
   list-style-type: none;
-
 }
-.rating li{
+.rating li {
   display: inline-block;
   color: #ffc107;
 }
