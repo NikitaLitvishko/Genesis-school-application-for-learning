@@ -4,7 +4,8 @@ export default function Lessons(props) {
       {props.sortedLessons.map((lesson) => (
         <li class-name="lesson-item" key={lesson.id}>
           <a
-            className="page-link"
+            href="#!"
+            className={`lesson-link ${lesson.order - 1 === props.currentLesson ? "active" : ""}`}
             onClick={() => props.setLesson(lesson.order - 1)}
           >
             {`${lesson.order}. ${lesson.title}. ${lesson.status}`}

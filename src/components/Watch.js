@@ -9,7 +9,6 @@ import { byField } from "./helpers";
 export default function Watch() {
   const { id } = useParams();
   const [currentLesson, setCurrentLesson] = useState(0);
-  console.log(currentLesson);
 
   const course = useFetch(API_URL_LIST + id);
   if (!course) return "Loading...";
@@ -30,15 +29,13 @@ export default function Watch() {
     ],
   };
 
-  console.log(play);
-
   const setLesson = (lessonNumber) => setCurrentLesson(lessonNumber);
   return (
     <div>
       <div key={play.sources[0].src}>
         <Player {...play} />
       </div>
-      <Lessons sortedLessons={sortedLessons} setLesson={setLesson} />
+      <Lessons sortedLessons={sortedLessons} currentLesson={currentLesson} setLesson={setLesson} />
       <p>{JSON.stringify(course, null, 2)}</p>
     </div>
   );

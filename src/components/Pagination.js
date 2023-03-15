@@ -6,6 +6,7 @@ export default function Pagination({ totalCourses, currentPage }) {
   for (let i = 1; i <= Math.ceil(totalCourses / COURSES_PER_PAGE); i++) {
     pageNumbers.push(i);
   }
+
   return (
     <div>
       <ul className="pagination">
@@ -13,7 +14,7 @@ export default function Pagination({ totalCourses, currentPage }) {
           <li className="page-item" key={number}>
             <a
               href={`/courses/${number}`}
-              className={`page-link ${number === currentPage ? "active" : ""}`}
+              className={`page-link ${number === Number(currentPage) ? "active" : ""}`}
             >
               {number}
             </a>

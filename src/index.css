@@ -4,19 +4,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 #root {
-  /* flex-контейнер для <header>, <main> и <footer> */
   display: flex;
-  /* flex-элементы <header>, <main> и <footer> выстаиваются по вертикали */
   flex-direction: column;
-  /* вся высота viewport браузера */
   min-height: 100vh;
 }
 main {
   padding-top: 20px;
-  /*
-   * может как увеличиваться, так и уменьшаться, чтобы вместе с
-   * <header> и <footer> занять всю высоту viewport браузера
-   */
   flex: 1 1 auto;
 }
 .page-footer {
@@ -61,9 +54,13 @@ main {
 nav {
   box-shadow: none;
 }
+.player {
+  width: 700px;
+}
+
 .page-link.active {
   color:blue;
 }
-.player {
-  width: 400px;
+.lesson-link.active {
+  color:black;
 }
