@@ -61,3 +61,9 @@ main {
 nav {
   box-shadow: none;
 }
+.page-link.active {
+  color:blue;
+}
+.player {
+  width: 400px;
+}

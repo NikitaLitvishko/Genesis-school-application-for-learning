@@ -1,20 +1,12 @@
-import React, { useState, useEffect } from "react";
-import useFetch from "./useFetch";
+import React from "react";
 import Course from "./Course";
 import Pagination from "./Pagination";
-import findPageIndexes from "./helpers";
+import { findPageIndexes } from "./helpers";
+import { useParams } from "react-router-dom";
 
-const API_URL_LIST = "https://api.wisey.app/api/v1/core/preview-courses/";
-
-export default function App() {
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const data = useFetch(API_URL_LIST);
-  if (!data) return "Loading...";
-
-  const courses = findPageIndexes(data, currentPage);
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+export default function List(props) {
+  const { page } = useParams();
+  const currentCourses = findPageIndexes(props.courses, page);
 
   return (
     <div className="courses-page mt-5">
@@ -26,7 +18,7 @@ export default function App() {
         Courses
       </h1>
       <ul className="courses-row">
-        {courses[0].map((course) => (
+        {currentCourses[0].map((course) => (
           <Course
             {...course}
             img={course.previewImageLink + "/cover.webp"}
@@ -35,7 +27,7 @@ export default function App() {
         ))}
       </ul>
       <ul className="courses-row">
-        {courses[1].map((course) => (
+        {currentCourses[1].map((course) => (
           <Course
             {...course}
             img={course.previewImageLink + "/cover.webp"}
@@ -43,10 +35,7 @@ export default function App() {
           />
         ))}
       </ul>
-      <Pagination
-        totalCourses={data.courses.length}
-        paginate={paginate}
-      />
+      <Pagination totalCourses={props.courses.length} currentPage={page} />
     </div>
   );
 }

@@ -1,6 +1,10 @@
 export default function Course(props) {
   return (
-    <div className="course">
+    <div
+      key={props.id}
+      className="course"
+      onClick={() => (window.location.href = `/course/${props.id}`)}
+    >
       <div className="title">{props.title}</div>
       <div className="image">
         <img src={props.img} alt="Logo"></img>
