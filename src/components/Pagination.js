@@ -14,7 +14,9 @@ export default function Pagination({ totalCourses, currentPage }) {
           <li className="page-item" key={number}>
             <a
               href={`/courses/${number}`}
-              className={`page-link ${number === Number(currentPage) ? "active" : ""}`}
+              className={`page-link ${
+                number === Number(currentPage) ? "active" : ""
+              }`}
             >
               {number}
             </a>

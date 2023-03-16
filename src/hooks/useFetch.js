@@ -14,6 +14,6 @@ export function useFetch(url) {
         return response.json();
       })
       .then((data) => setData(data));
-  }, []);
+  }, [url]);
   return data;
 }

@@ -1,15 +1,17 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
 
-export default function Player({options, currentTime, id}) {
+export default function Player({ options, currentTime, id }) {
   const videoNode = useRef(null);
 
   useEffect(() => {
     if (videoNode.current) {
       videoNode.current.currentTime = currentTime;
-      const player = videojs(videoNode.current, {...options} );
-      const setCurrentTime = () => {localStorage.setItem(id, player.currentTime())};
+      const player = videojs(videoNode.current, { ...options });
+      const setCurrentTime = () => {
+        localStorage.setItem(id, player.currentTime());
+      };
       window.addEventListener("beforeunload", setCurrentTime);
       return () => {
         setCurrentTime();

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback} from "react";
+import { useState } from "react";
 import { useFetch } from "../hooks/useFetch";
 import { API_URL_LIST } from "../constants";
 import { useParams } from "react-router-dom";
@@ -9,8 +9,10 @@ import { byField } from "./helpers";
 export default function Watch() {
   const { id } = useParams();
   const lessonNumber = localStorage.getItem(`currentLesson-${id}`);
-  const [currentLesson, setCurrentLesson] = useState(lessonNumber ? Number(lessonNumber) : 0);
-  
+  const [currentLesson, setCurrentLesson] = useState(
+    lessonNumber ? Number(lessonNumber) : 0
+  );
+
   const course = useFetch(API_URL_LIST + id);
   if (!course) return "Loading...";
 
@@ -36,11 +38,19 @@ export default function Watch() {
   return (
     <div>
       <div key={play.sources[0].src}>
-        <Player options={play} currentTime={time} id={sortedLessons[currentLesson].id} />
+        <Player
+          options={play}
+          currentTime={time}
+          id={sortedLessons[currentLesson].id}
+        />
       </div>
       <p>{course.description}</p>
-      <Lessons sortedLessons={sortedLessons} currentLesson={currentLesson} lessonId={course.id} setLesson={setLesson} />
-      <p>{JSON.stringify(course, null, 2)}</p>
+      <Lessons
+        sortedLessons={sortedLessons}
+        currentLesson={currentLesson}
+        lessonId={course.id}
+        setLesson={setLesson}
+      />
     </div>
   );
 }
