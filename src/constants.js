@@ -1,5 +1,4 @@
 export const COURSES_PER_PAGE = 10;
-export const COURSES_PER_ROW = 5;
 export const API_URL_LIST =
   "https://api.wisey.app/api/v1/core/preview-courses/";
 

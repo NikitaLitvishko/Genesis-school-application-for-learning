@@ -1,12 +1,10 @@
-import { COURSES_PER_PAGE, COURSES_PER_ROW } from "../constants";
+import { COURSES_PER_PAGE } from "../constants";
 
 export function findPageIndexes(courses, currentPage) {
   const lastCourseIndex = currentPage * COURSES_PER_PAGE;
   const firstCourseIndex = lastCourseIndex - COURSES_PER_PAGE;
   const currentPageCourses = courses.slice(firstCourseIndex, lastCourseIndex);
-  const firstRow = currentPageCourses.slice(0, COURSES_PER_ROW);
-  const secondRow = currentPageCourses.slice(COURSES_PER_ROW, COURSES_PER_PAGE);
-  return [firstRow, secondRow];
+  return currentPageCourses;
 }
 
 export function byField(field) {

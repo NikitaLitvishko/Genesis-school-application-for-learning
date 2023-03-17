@@ -8,8 +8,8 @@ export default function Pagination({ totalCourses, currentPage }) {
   }
 
   return (
-    <div>
-      <ul className="pagination">
+    <div className="pagination">
+      <ul>
         {pageNumbers.map((number) => (
           <li className="page-item" key={number}>
             <a

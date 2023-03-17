@@ -4,10 +4,11 @@ import Pagination from "./Pagination";
 import { findPageIndexes } from "./helpers";
 import { useParams } from "react-router-dom";
 
+import Box from '@mui/material/Box';
+
 export default function List(props) {
   const { page } = useParams();
   const currentCourses = findPageIndexes(props.courses, page);
-
   return (
     <div className="courses-page mt-5">
       <h1
@@ -17,24 +18,17 @@ export default function List(props) {
       >
         Courses
       </h1>
-      <ul className="courses-row">
-        {currentCourses[0].map((course) => (
+      <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center',}}>
+        {currentCourses.map((course) => (
+          
           <Course
             {...course}
             img={course.previewImageLink + "/cover.webp"}
-            skills={course.meta.skills}
+            
           />
         ))}
-      </ul>
-      <ul className="courses-row">
-        {currentCourses[1].map((course) => (
-          <Course
-            {...course}
-            img={course.previewImageLink + "/cover.webp"}
-            skills={course.meta.skills}
-          />
-        ))}
-      </ul>
+      </Box>
+
       <Pagination totalCourses={props.courses.length} currentPage={page} />
     </div>
   );

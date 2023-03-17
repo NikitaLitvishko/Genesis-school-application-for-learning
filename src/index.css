@@ -7,10 +7,23 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #eff0f4;
 }
 main {
   padding-top: 20px;
   flex: 1 1 auto;
+}
+nav {
+  color: black;
+  background-color: white;
+  box-shadow: none;
+}
+h1.title-course{
+  display: "flex";
+  justify-content: "center";
+  font-size: 50px;
+  font-weight: 500;
+  text-align: center;
 }
 .page-footer {
   padding-top: 10px;
@@ -26,10 +39,13 @@ main {
   border: solid;
   border-color: black;
   border-radius: 7px;
-  width: 25%;
+  max-width: 300px;
+  width: 100%;
 }
 .title {
   font-weight: 700;
+  font-size: 20px;
+  justify-content: center;
 }
 
 .image-video-preview img {
@@ -51,16 +67,45 @@ main {
   display: inline-block;
   color: #ffc107;
 }
-nav {
-  box-shadow: none;
+
+.lesson-list {
+  margin-top: 1%;
+  margin-right: 0%;
+  width: 29%;
+  font-size: 18px;
 }
 .player {
-  width: 700px;
+  margin-top: 1%;
+  margin-left: 1%;
+  width: 70%;
 }
-
+@media (max-width:980px){
+  .player{
+    width: 100%
+  }
+  .lesson-list {
+    margin-right: 1%;
+    width: 100%;
+    font-size: 18px;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+  h1.title-course{
+    font-size: 30px;
+    font-weight: 500;
+  }
+}
 .page-link.active {
   color:blue;
 }
+.lesson-link {
+  color:black
+}
 .lesson-link.active {
-  color:black;
+  color:blue;
+}
+
+.pagination {
+  text-align: center;
+  list-style: none;
 }

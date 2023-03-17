@@ -13,7 +13,6 @@ import { API_URL_LIST } from "../constants";
 export default function App() {
   const data = useFetch(API_URL_LIST);
   if (!data) return "Loading...";
-
   return (
     <Router>
       <Routes>

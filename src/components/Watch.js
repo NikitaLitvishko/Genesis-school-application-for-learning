@@ -6,6 +6,8 @@ import Player from "./Player";
 import Lessons from "./Lessons";
 import { byField } from "./helpers";
 
+import Box from '@mui/material/Box';
+
 export default function Watch() {
   const { id } = useParams();
   const lessonNumber = localStorage.getItem(`currentLesson-${id}`);
@@ -37,20 +39,26 @@ export default function Watch() {
 
   return (
     <div>
-      <div key={play.sources[0].src}>
-        <Player
-          options={play}
-          currentTime={time}
-          id={sortedLessons[currentLesson].id}
-        />
-      </div>
-      <p>{course.description}</p>
-      <Lessons
-        sortedLessons={sortedLessons}
-        currentLesson={currentLesson}
-        lessonId={course.id}
-        setLesson={setLesson}
-      />
+      <h1 className="title-course">
+        {course.title}
+      </h1>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap'}}>
+        <div key={play.sources[0].src} className="player">
+          <Player
+            options={play}
+            currentTime={time}
+            id={sortedLessons[currentLesson].id}
+          />
+        </div>
+        <div className="lesson-list">
+          <Lessons
+            sortedLessons={sortedLessons}
+            currentLesson={currentLesson}
+            lessonId={course.id}
+            setLesson={setLesson}
+          />
+        </div>
+      </Box>
     </div>
   );
 }
