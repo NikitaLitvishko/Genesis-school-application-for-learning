@@ -24,8 +24,8 @@ export default function Player({ options, currentTime, id }) {
   }, [videoNode]);
 
   return (
-      <div data-vjs-player>
-        <video ref={videoNode} className="video-js"></video>
-      </div>
+    <div data-vjs-player>
+      <video ref={videoNode} className="video-js"></video>
+    </div>
   );
 }

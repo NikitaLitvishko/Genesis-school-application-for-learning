@@ -6,7 +6,7 @@ import Player from "./Player";
 import Lessons from "./Lessons";
 import { byField } from "./helpers";
 
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 
 export default function Watch() {
   const { id } = useParams();
@@ -39,10 +39,8 @@ export default function Watch() {
 
   return (
     <div>
-      <h1 className="title-course">
-        {course.title}
-      </h1>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap'}}>
+      <h1 className="title-course">{course.title}</h1>
+      <Box sx={{ display: "flex", flexWrap: "wrap" }}>
         <div key={play.sources[0].src} className="player">
           <Player
             options={play}

@@ -30,7 +30,9 @@ export default function Lessons(props) {
           width: "100%",
           overflow: "auto",
         }}
-        subheader={<ListSubheader sx={{fontSize: "21px"}}>Lessons</ListSubheader>}
+        subheader={
+          <ListSubheader sx={{ fontSize: "21px" }}>Lessons</ListSubheader>
+        }
       >
         {props.sortedLessons.map((lesson) => (
           <ListItemButton

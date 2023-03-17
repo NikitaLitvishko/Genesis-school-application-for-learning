@@ -4,7 +4,7 @@ import Pagination from "./Pagination";
 import { findPageIndexes } from "./helpers";
 import { useParams } from "react-router-dom";
 
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 
 export default function List(props) {
   const { page } = useParams();
@@ -18,14 +18,16 @@ export default function List(props) {
       >
         Courses
       </h1>
-      <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center',}}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "center",
+        }}
+      >
         {currentCourses.map((course) => (
-          
-          <Course
-            {...course}
-            img={course.previewImageLink + "/cover.webp"}
-            
-          />
+          <Course {...course} img={course.previewImageLink + "/cover.webp"} />
         ))}
       </Box>
 
