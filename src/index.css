@@ -24,6 +24,7 @@ h1.title-course {
   font-size: 50px;
   font-weight: 500;
   text-align: center;
+  width: 95%;
 }
 .page-footer {
   padding-top: 10px;
@@ -67,7 +68,9 @@ h1.title-course {
   display: inline-block;
   color: #ffc107;
 }
-
+.watch-header {
+  display: flex;
+}
 .lesson-list {
   margin-top: 1%;
   width: 29%;

@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { useFetch } from "../hooks/useFetch";
 import { API_URL_LIST } from "../constants";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+
 import Lessons from "./Lessons";
 import Loader from "./Loader";
 import Error from "./Error";
 import HlsPlayer from "./HlsPlayer";
-
 import { byField } from "./helpers";
 
-import { Box } from "@mui/material/";
+import { Box, IconButton } from "@mui/material/";
+import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
+
 
 export default function Watch() {
   const { id } = useParams();
@@ -18,7 +20,7 @@ export default function Watch() {
     lessonNumber ? Number(lessonNumber) : 0
   );
 
-  const { data: course, loading, error } = useFetch(API_URL_LIST + id);
+  const { data: course, error } = useFetch(API_URL_LIST + id);
 
   if (error) return <Error />;
   if (!course) return <Loader />;
@@ -31,7 +33,14 @@ export default function Watch() {
 
   return (
     <div>
-      <h1 className="title-course">{course.title}</h1>
+      <div className="watch-header">
+        <IconButton component={Link} to="/courses/1">
+          <ArrowBackIosOutlinedIcon/>
+        </IconButton>
+        <h1 className="title-course">{course.title}</h1>
+      </div>
+
+      
       <Box sx={{ display: "flex", flexWrap: "wrap" }}>
         <HlsPlayer
           src={sortedLessons[currentLesson].link}

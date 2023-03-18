@@ -5,10 +5,10 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import { useFetch } from "../hooks/useFetch";
-import List from "./List";
-import Watch from "./Watch";
-import { API_URL_LIST } from "../constants";
+import { useFetch } from "./hooks/useFetch";
+import List from "./components/List";
+import Watch from "./components/Watch";
+import { API_URL_LIST } from "./constants";
 
 export default function App() {
   const { data, ...rest } = useFetch(API_URL_LIST);

@@ -49,7 +49,7 @@ export default function HlsPlayer({ src, currentTime, id }) {
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [src, currentTime]);
+  }, [src, currentTime, id]);
 
   const handlePictureInPicture = () => {
     if (document.pictureInPictureElement) {
