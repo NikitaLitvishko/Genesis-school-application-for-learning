@@ -1,4 +1,6 @@
 import React from "react";
+import {NavLink} from 'react-router-dom'
+
 import { COURSES_PER_PAGE } from "../constants";
 
 export default function Pagination({ totalCourses, currentPage }) {
@@ -12,14 +14,14 @@ export default function Pagination({ totalCourses, currentPage }) {
       <ul>
         {pageNumbers.map((number) => (
           <li className="page-item" key={number}>
-            <a
-              href={`/courses/${number}`}
+            <NavLink
+              to={`/courses/${number}`}
               className={`page-link ${
                 number === Number(currentPage) ? "active" : ""
               }`}
             >
               {number}
-            </a>
+            </NavLink>
           </li>
         ))}
       </ul>
