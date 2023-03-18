@@ -70,7 +70,6 @@ h1.title-course {
 
 .lesson-list {
   margin-top: 1%;
-  margin-right: 0%;
   width: 29%;
   font-size: 18px;
 }
@@ -78,6 +77,9 @@ h1.title-course {
   margin-top: 1%;
   margin-left: 1%;
   width: 70%;
+}
+video {
+  width: 100%;
 }
 @media (max-width: 980px) {
   .player {
