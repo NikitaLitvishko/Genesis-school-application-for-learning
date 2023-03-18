@@ -11,14 +11,13 @@ import Watch from "./Watch";
 import { API_URL_LIST } from "../constants";
 
 export default function App() {
-  const data = useFetch(API_URL_LIST);
-  if (!data) return "Loading...";
+  const { data, ...rest } = useFetch(API_URL_LIST);
   return (
     <Router>
       <Routes>
         <Route
           path="/courses/:page"
-          element={<List courses={data.courses} />}
+          element={<List courses={data?.courses || []} {...rest} />}
         />
         <Route path="/course/:id" element={<Watch />} />
         <Route path="/" element={<Navigate to="/courses/1" />} />

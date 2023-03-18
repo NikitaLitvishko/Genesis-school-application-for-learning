@@ -1,37 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Course from "./Course";
 import Pagination from "./Pagination";
 import { findPageIndexes } from "./helpers";
 import { useParams } from "react-router-dom";
+import Loader from "./Loader";
 
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material/";
+import { Typography } from "@mui/material";
 
-export default function List(props) {
+export default function List({ courses, loading, error }) {
   const { page } = useParams();
-  const currentCourses = findPageIndexes(props.courses, page);
+  const [currentCourses, setCurrentCourses] = useState([]);
+
+  console.log(courses);
+  useEffect(() => {
+    setCurrentCourses(findPageIndexes(courses, page));
+  }, [courses, page]);
+
   return (
     <div className="courses-page mt-5">
-      <h1
-        style={{ display: "flex", justifyContent: "center" }}
-        allign="center"
-        className="primary"
-      >
+      <Typography align="center" variant="h1">
         Courses
-      </h1>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-      >
-        {currentCourses.map((course) => (
-          <Course {...course} img={course.previewImageLink + "/cover.webp"} />
-        ))}
-      </Box>
+      </Typography>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              justifyContent: "center",
+            }}
+          >
+            {currentCourses.map((course) => (
+              <Course
+                {...course}
+                img={course.previewImageLink + "/cover.webp"}
+              />
+            ))}
+          </Box>
 
-      <Pagination totalCourses={props.courses.length} currentPage={page} />
+          <Pagination totalCourses={courses.length} currentPage={page} />
+        </div>
+      )}
     </div>
   );
 }

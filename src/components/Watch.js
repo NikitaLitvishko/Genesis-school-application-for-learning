@@ -4,9 +4,12 @@ import { API_URL_LIST } from "../constants";
 import { useParams } from "react-router-dom";
 import Player from "./Player";
 import Lessons from "./Lessons";
+import Loader from "./Loader";
+import Error from "./Error";
+
 import { byField } from "./helpers";
 
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material/";
 
 export default function Watch() {
   const { id } = useParams();
@@ -15,8 +18,10 @@ export default function Watch() {
     lessonNumber ? Number(lessonNumber) : 0
   );
 
-  const course = useFetch(API_URL_LIST + id);
-  if (!course) return "Loading...";
+  const { data: course, loading, error } = useFetch(API_URL_LIST + id);
+  console.log(error);
+  if (error) return <Error />;
+  if (!course) return <Loader />;
 
   const sortedLessons = course.lessons.sort(byField("order"));
   const time = localStorage.getItem(sortedLessons[currentLesson].id);

@@ -3,9 +3,11 @@ export default function Skills(props) {
     return (
       <div>
         Skills that u will have:
-        {props.skills.map((skill) => (
-          <li>{skill}</li>
-        ))}
+        <ul>
+          {props.skills.map((skill) => (
+            <li key={skill}>{skill}</li>
+          ))}
+        </ul>
       </div>
     );
   }

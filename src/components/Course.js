@@ -10,10 +10,11 @@ import {
 } from "@mui/material/";
 
 export default function Course(props) {
-  const [hover, setHover] = useState(false);
+  const [isMouseEntered, setIsMouseEntered] = useState(false);
 
   const handleMouseEnter = () => {
-    if (typeof props.meta["courseVideoPreview"] !== "undefined") setHover(true);
+    if (typeof props.meta["courseVideoPreview"] !== "undefined")
+      setIsMouseEntered(true);
   };
 
   return (
@@ -21,7 +22,7 @@ export default function Course(props) {
       key={props.id}
       onClick={() => (window.location.href = `/course/${props.id}`)}
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={() => setHover(false)}
+      onMouseLeave={() => setIsMouseEntered(false)}
       sx={{
         width: 1,
         maxWidth: 300,
@@ -36,7 +37,7 @@ export default function Course(props) {
         sx={{ mt: 1, textAlign: "center", height: "85px" }}
       />
       <CardActionArea sx={{ height: "168px" }}>
-        {!hover ? (
+        {!isMouseEntered ? (
           <CardMedia component="img" image={props.img} alt={props.title} />
         ) : (
           <HoverHlsPlayer {...props} />

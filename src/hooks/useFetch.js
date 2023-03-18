@@ -3,7 +3,11 @@ import { API_TOKEN } from "../constants";
 
 export function useFetch(url) {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
+    setLoading(true);
     fetch(url, {
       method: "GET",
       headers: new Headers({
@@ -11,9 +15,12 @@ export function useFetch(url) {
       }),
     })
       .then((response) => {
-        return response.json();
+        if (response.ok) return response.json();
+        throw new Error("Something went wrong");
       })
-      .then((data) => setData(data));
+      .then((data) => setData(data))
+      .catch((err) => setError(err))
+      .finally(() => setLoading(false));
   }, [url]);
-  return data;
+  return { data, loading, error };
 }
