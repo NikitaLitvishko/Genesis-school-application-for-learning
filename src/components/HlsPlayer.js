@@ -10,7 +10,14 @@ export default function HlsPlayer({ src, currentTime, id }) {
     const handleBeforeUnload = () => {
       localStorage.setItem(id, video.currentTime);
     };
-
+    const handleKeyPress = (event) => {
+        if (event.code === "KeyD") {
+          video.playbackRate += 0.25;
+        } else if (event.code === "KeyA") {
+          video.playbackRate -= 0.25;
+        }
+      };
+    window.addEventListener("keydown", handleKeyPress);
     window.addEventListener("beforeunload", handleBeforeUnload);
 
     if (Hls.isSupported()) {
@@ -25,6 +32,7 @@ export default function HlsPlayer({ src, currentTime, id }) {
       });
       return () => {
         handleBeforeUnload();
+        window.removeEventListener("keydown", handleKeyPress);
         window.removeEventListener("beforeunload", handleBeforeUnload);
         hls.destroy();
       };
@@ -43,9 +51,22 @@ export default function HlsPlayer({ src, currentTime, id }) {
     };
   }, [src, currentTime]);
 
+  const handlePictureInPicture = () => {
+    if (document.pictureInPictureElement) {
+      document.exitPictureInPicture();
+    } else {
+      videoRef.current.requestPictureInPicture();
+    }
+  };
+  
   return (
     <div className="player">
       <video ref={videoRef} controls={true} />
+      <p>
+      To change the video playback speed you can use your keyboard.
+      Key "A" is for decreasing speed. Key "D" is for increasing speed.
+      </p>
+      <button onClick={handlePictureInPicture}>Picture-in-Picture</button>
     </div>
   );
 }

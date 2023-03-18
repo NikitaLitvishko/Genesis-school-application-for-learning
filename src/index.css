@@ -78,6 +78,16 @@ h1.title-course {
   margin-left: 1%;
   width: 70%;
 }
+.player button {
+
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 video {
   width: 100%;
 }
