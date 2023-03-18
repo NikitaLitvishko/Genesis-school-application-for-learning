@@ -1,14 +1,30 @@
-import ReactHlsPlayer from "react-hls-player";
+import React, { useEffect, useRef } from 'react';
+import Hls from "hls.js"
 
-export default function HoverHlsPlayer(props) {
+export function HoverHlsPlayer ({ src }) {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(src);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        video.play();
+      });
+      return () => {
+        hls.destroy();
+      };
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = src;
+      video.addEventListener("loadedmetadata", () => {
+        video.play();
+      });
+    }
+  }, [src]);
+
   return (
-    <ReactHlsPlayer
-      src={props.meta.courseVideoPreview.link}
-      autoPlay={true}
-      controls={false}
-      muted="muted"
-      width="100%"
-      height="auto"
-    />
+    <video ref={videoRef} muted controls={false} playsInline />
   );
 }

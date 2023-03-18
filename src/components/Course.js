@@ -1,5 +1,5 @@
 import { useState } from "react";
-import HoverHlsPlayer from "./HoverHlsPlayer";
+import { HoverHlsPlayer } from "./HoverHlsPlayer";
 import Skills from "./Skills";
 import {
   Card,
@@ -40,7 +40,7 @@ export default function Course(props) {
         {!isMouseEntered ? (
           <CardMedia component="img" image={props.img} alt={props.title} />
         ) : (
-          <HoverHlsPlayer {...props} />
+          <HoverHlsPlayer src={props.meta.courseVideoPreview.link} />
         )}
       </CardActionArea>
       <CardContent>

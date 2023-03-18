@@ -4,7 +4,7 @@ import Pagination from "./Pagination";
 import { findPageIndexes } from "./helpers";
 import { useParams } from "react-router-dom";
 import Loader from "./Loader";
-
+import Error from "./Error";
 import { Box } from "@mui/material/";
 import { Typography } from "@mui/material";
 
@@ -12,10 +12,11 @@ export default function List({ courses, loading, error }) {
   const { page } = useParams();
   const [currentCourses, setCurrentCourses] = useState([]);
 
-  console.log(courses);
   useEffect(() => {
     setCurrentCourses(findPageIndexes(courses, page));
   }, [courses, page]);
+
+  if (error) return <Error />;
 
   return (
     <div className="courses-page mt-5">
